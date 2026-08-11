@@ -1,0 +1,19 @@
+{{define "header"}}
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="4Life Community home">
+      <img src="{{.Site.Logo}}" alt="{{.Site.Title}}">
+    </a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="/" {{if eq .Current "/"}}class="active"{{end}}>Home</a>
+      <a href="/about" {{if eq .Current "/about"}}class="active"{{end}}>About</a>
+      <a href="/blog" {{if hasPrefix .Current "/blog"}}class="active"{{end}}>Blog</a>
+      <a href="/projects" {{if eq .Current "/projects"}}class="active"{{end}}>Projects</a>
+      <a href="/contact" {{if eq .Current "/contact"}}class="active"{{end}}>Contact</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+{{end}}

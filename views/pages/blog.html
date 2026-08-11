@@ -1,0 +1,22 @@
+{{define "title"}}Field Notes — {{.Site.Title}}{{end}}
+
+{{define "content"}}
+{{$d := .Extra}}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">FIELD NOTES</p>
+    <h1>The Blog</h1>
+    <p>Stories from the territory—regeneration in action, from the Salish Sea to the Andes.</p>
+  </div>
+</section>
+
+<section class="section sec-white">
+  <div class="container">
+    <div class="blog-grid">
+      {{range $d.Posts}}
+        {{template "blog_card" .}}
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}

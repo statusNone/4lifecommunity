@@ -1,0 +1,14 @@
+{{define "project_card"}}
+<article class="project-card">
+  <div class="project-card-media">
+    <img src="{{.Image}}" alt="{{.ImageAlt}}" loading="lazy">
+    <span class="project-status">{{.Status}}</span>
+  </div>
+  <div class="project-card-body">
+    <p class="eyebrow">{{.Tagline}}</p>
+    <h3>{{.Title}}</h3>
+    <p>{{.Summary}}</p>
+    <a class="btn btn-outline" href="/contact">Get involved</a>
+  </div>
+</article>
+{{end}}

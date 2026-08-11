@@ -1,0 +1,54 @@
+{{define "title"}}Contact — {{.Site.Title}}{{end}}
+
+{{define "content"}}
+{{$d := .Extra}}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">GENERAL INQUIRIES</p>
+    <h1>Let's Weave Something Meaningful Together</h1>
+    <p>Healing sessions, bioregional mapping, grant-writing collaboration, or just to say hi—reach out.</p>
+  </div>
+</section>
+
+<section class="section sec-white">
+  <div class="container contact-layout">
+    <div class="contact-info">
+      <h2>Rooted in Port Townsend</h2>
+      <p>4Life is based in the unceded territories of the qatay (kuh-tie) peoples (Port Townsend, Wash.) and the wider Salish Sea, stewarded by S'Klallam, Chemakum, and Coast Salish nations since time immemorial.</p>
+      <ul class="contact-links">
+        <li><a href="mailto:{{.Site.Email}}">{{.Site.Email}}</a></li>
+        <li><a href="{{.Site.Instagram}}" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="{{.Site.YouTube}}" target="_blank" rel="noopener">YouTube</a></li>
+      </ul>
+    </div>
+
+    <div id="contact-form" class="contact-form">
+      {{if $d.Sent}}
+        {{template "contact_success" .}}
+      {{else}}
+      <form hx-post="/contact/submit" hx-target="#contact-form" hx-swap="innerHTML">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required>
+
+        <label for="topic">What's this about?</label>
+        <select id="topic" name="topic">
+          <option>Grant writing / funding strategy</option>
+          <option>AstroYoga / healing session</option>
+          <option>Bioregional project</option>
+          <option>Podcast / media</option>
+          <option>Just saying hi</option>
+        </select>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+
+        <button class="btn btn-solid" type="submit">Send Message</button>
+      </form>
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}

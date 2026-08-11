@@ -1,0 +1,84 @@
+{{define "admin_settings.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}}</title>
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-body">
+{{template "admin_sidebar" .}}
+<header class="admin-page-head">
+  <h1>Settings</h1>
+</header>
+
+<section class="admin-panel">
+  <form method="post" action="/admin/settings/save" class="admin-form">
+    <div class="form-row">
+      <div class="field">
+        <label>Site title</label>
+        <input name="site_title" type="text" value="{{.Settings.site_title}}">
+      </div>
+      <div class="field">
+        <label>Meta description</label>
+        <input name="meta_description" type="text" value="{{.Settings.meta_description}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label>Logo URL</label>
+        <input name="logo" type="text" value="{{.Settings.logo}}">
+      </div>
+      <div class="field">
+        <label>Contact email</label>
+        <input name="contact_email" type="email" value="{{.Settings.contact_email}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label>Instagram URL</label>
+        <input name="instagram" type="text" value="{{.Settings.instagram}}">
+      </div>
+      <div class="field">
+        <label>YouTube URL</label>
+        <input name="youtube" type="text" value="{{.Settings.youtube}}">
+      </div>
+    </div>
+    <div class="admin-divider">Newsletter</div>
+    <div class="form-row">
+      <div class="field">
+        <label>Newsletter title <small>(markdown)</small></label>
+        <input name="newsletter_title" type="text" value="{{.Settings.newsletter_title}}">
+      </div>
+      <div class="field">
+        <label>Newsletter body <small>(markdown)</small></label>
+        <input name="newsletter_body" type="text" value="{{.Settings.newsletter_body}}">
+      </div>
+    </div>
+    <div class="admin-divider">CTA section</div>
+    <div class="form-row">
+      <div class="field">
+        <label>CTA headline <small>(markdown)</small></label>
+        <input name="cta_headline" type="text" value="{{.Settings.cta_headline}}">
+      </div>
+      <div class="field">
+        <label>CTA button text</label>
+        <input name="cta_button" type="text" value="{{.Settings.cta_button}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label>CTA body <small>(markdown)</small></label>
+        <input name="cta_body" type="text" value="{{.Settings.cta_body}}">
+      </div>
+      <div class="field">
+        <label>CTA button URL</label>
+        <input name="cta_url" type="text" value="{{.Settings.cta_url}}">
+      </div>
+    </div>
+    <button type="submit" class="btn">Save Settings</button>
+  </form>
+</section>
+</main>
+</body>
+</html>{{end}}

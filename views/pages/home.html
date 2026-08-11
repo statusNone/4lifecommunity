@@ -1,0 +1,63 @@
+{{define "title"}}{{.Site.Title}} — {{.Site.Tagline}}{{end}}
+
+{{define "content"}}
+{{$d := .Extra}}
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">{{$d.Hero.Eyebrow}}</p>
+      <h1>{{mdInline $d.Hero.Headline}}</h1>
+      <p class="hero-body">{{mdInline $d.Hero.Body}}</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="{{$d.Hero.PrimaryURL}}">{{$d.Hero.Primary}}</a>
+        <a class="btn btn-outline-light" href="{{$d.Hero.SecondaryURL}}">{{$d.Hero.Secondary}}</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="{{$d.Hero.Image}}" alt="{{$d.Hero.ImageAlt}}">
+    </div>
+  </div>
+</section>
+
+<section class="section sec-white about-preview">
+  <div class="container about-preview-grid">
+    <img class="about-preview-img" src="{{$d.About.Image}}" alt="{{$d.About.ImageAlt}}" loading="lazy">
+    <div>
+      <p class="eyebrow">{{$d.About.Eyebrow}}</p>
+      <h2>{{mdInline $d.About.Headline}}</h2>
+      <p class="lede">{{mdInline (index (splitLines $d.About.Body) 0)}}</p>
+      <a class="btn btn-solid" href="/about">Meet April</a>
+    </div>
+  </div>
+</section>
+
+{{if $d.Projects}}
+<section class="section sec-dark projects-preview">
+  <div class="container">
+    <h2 class="section-title">Projects in the Ground</h2>
+    <div class="project-grid">
+      {{range $d.Projects}}
+        {{template "project_card" .}}
+      {{end}}
+    </div>
+    <div class="section-cta"><a class="btn btn-solid" href="/projects">All Projects</a></div>
+  </div>
+</section>
+{{end}}
+
+{{if $d.Posts}}
+<section class="section sec-white latest-posts">
+  <div class="container">
+    <h2 class="section-title">From the Field Notes</h2>
+    <div class="blog-grid">
+      {{range (first 3 $d.Posts)}}
+        {{template "blog_card" .}}
+      {{end}}
+    </div>
+    <div class="section-cta"><a class="btn btn-outline" href="/blog">Read the Blog</a></div>
+  </div>
+</section>
+{{end}}
+{{end}}

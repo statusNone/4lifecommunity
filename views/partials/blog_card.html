@@ -1,0 +1,13 @@
+{{define "blog_card"}}
+<article class="post-card">
+  <a href="/blog/{{.Slug}}">
+    {{if .Cover}}<div class="post-card-media"><img src="{{.Cover}}" alt="{{.Title}}" loading="lazy"></div>{{end}}
+    <div class="post-card-body">
+      <time class="post-card-date" datetime="{{.Date}}">{{if .PublishedAt}}{{dateLong .PublishedAt}}{{else}}{{.Date}}{{end}}</time>
+      <h3>{{.Title}}</h3>
+      <p>{{.Excerpt}}</p>
+      <span class="post-card-link">Read more &rarr;</span>
+    </div>
+  </a>
+</article>
+{{end}}

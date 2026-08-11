@@ -1,0 +1,249 @@
+{{define "sections"}}
+{{range .}}
+{{if eq .Kind "intro"}}
+<section class="intro-section {{themeClass .Theme}}">
+  <div class="container intro-inner">
+    <div class="intro-text">
+      {{if .Label}}<div class="eyebrow">{{.Label}}</div>{{end}}
+      <h2>{{mdInline .Headline}}</h2>
+      <div class="intro-body">{{md .Body}}</div>
+      {{if .ButtonLabel}}<a class="btn btn-solid" href="{{.ButtonURL}}">{{.ButtonLabel}}</a>{{end}}
+    </div>
+  </div>
+</section>
+
+{{else if eq .Kind "split"}}
+<section class="split-section {{themeClass .Theme}}">
+  <div class="container split-inner {{if eq .ImageSide "right"}}split-reverse{{end}}">
+    <div class="split-media">
+      {{if .Image}}<img src="{{.Image}}" alt="{{.ImageAlt}}" loading="lazy">{{end}}
+      {{if .Gallery}}
+      <div class="split-media-strip">
+        {{range .Gallery}}<img src="{{.}}" alt="" loading="lazy">{{end}}
+      </div>
+      {{end}}
+    </div>
+    <div class="split-text">
+      {{if .Label}}<div class="eyebrow">{{.Label}}</div>{{end}}
+      <h2>{{mdInline .Headline}}</h2>
+      <div class="split-body">{{md .Body}}</div>
+      {{if .ButtonLabel}}<a class="btn {{if eq .Theme "dark" "black"}}btn-solid{{else}}btn-outline-dark{{end}}" href="{{.ButtonURL}}">{{.ButtonLabel}}</a>{{end}}
+    </div>
+  </div>
+</section>
+
+{{else if eq .Kind "quote"}}
+<section class="quote-section">
+  <div class="quote-bg" {{if .BgImage}}style="background-image:url('{{.BgImage}}')"{{end}}></div>
+  <div class="quote-overlay" {{if .BgOverlay}}style="opacity:{{.BgOverlay}}"{{end}}></div>
+  <div class="container quote-inner">
+    <blockquote>{{mdInline .Headline}}</blockquote>
+  </div>
+</section>
+
+{{else if eq .Kind "services"}}
+<section class="services-section {{themeClass .Theme}}">
+  <div class="container">
+    {{if .Label}}<div class="eyebrow center">{{.Label}}</div>{{end}}
+    {{if .Headline}}<h2 class="section-title">{{mdInline .Headline}}</h2>{{end}}
+    <div class="services-grid">
+      {{range .Accordion}}
+      <div class="service-card">
+        <h3>{{.Title}}</h3>
+        <div class="service-body">{{md .Body}}</div>
+      </div>
+      {{end}}
+    </div>
+    {{if .ButtonLabel}}<div class="services-cta"><a class="btn btn-solid" href="{{.ButtonURL}}">{{.ButtonLabel}}</a></div>{{end}}
+  </div>
+</section>
+
+{{else if eq .Kind "list"}}
+<section class="list-section {{themeClass .Theme}}">
+  <div class="container list-inner">
+    <div class="list-text">
+      {{if .Label}}<div class="eyebrow">{{.Label}}</div>{{end}}
+      <h2>{{mdInline .Headline}}</h2>
+      {{if .Body}}<div class="list-lead">{{md .Body}}</div>{{end}}
+      {{if .Bullets}}
+      <ul class="check-list">
+        {{range .Bullets}}<li>{{mdInline .}}</li>{{end}}
+      </ul>
+      {{end}}
+      {{if .ButtonLabel}}<a class="btn {{if eq .Theme "dark" "black"}}btn-solid{{else}}btn-outline-dark{{end}}" href="{{.ButtonURL}}">{{.ButtonLabel}}</a>{{end}}
+    </div>
+    {{if .Gallery}}
+    <div class="list-media">
+      {{range .Gallery}}<img src="{{.}}" alt="" loading="lazy">{{end}}
+    </div>
+    {{end}}
+  </div>
+</section>
+
+{{else if eq .Kind "landack"}}
+<section class="landack-section">
+  <div class="container">
+    <div class="eyebrow center">LAND &amp; LEGACY ACKNOWLEDGEMENT</div>
+    <h2 class="section-title">{{mdInline .Headline}}</h2>
+    <div class="landack-body">{{md .Body}}</div>
+  </div>
+</section>
+
+{{else if eq .Kind "bokeh"}}
+<section class="bokeh-section"></section>
+
+{{else if eq .Kind "gallery"}}
+<section class="gallery-section {{themeClass .Theme}}">
+  <div class="container">
+    {{if .Label}}<div class="eyebrow center">{{.Label}}</div>{{end}}
+    {{if .Headline}}<h2 class="section-title">{{mdInline .Headline}}</h2>{{end}}
+    <div class="gallery-grid">
+      {{range .Gallery}}
+      <figure class="gallery-item"><img src="{{.}}" alt="" loading="lazy"></figure>
+      {{end}}
+    </div>
+    {{if .ButtonLabel}}<div class="gallery-cta"><a class="btn btn-solid" href="{{.ButtonURL}}">{{.ButtonLabel}}</a></div>{{end}}
+  </div>
+</section>
+
+{{else if eq .Kind "richtext"}}
+<section class="richtext-section {{themeClass .Theme}}">
+  <div class="container prose">{{md .Body}}</div>
+</section>
+
+{{else if eq .Kind "contact-form"}}
+<section class="form-section {{themeClass .Theme}}">
+  <div class="container form-section-inner">
+    <div id="contact-form">
+      <form hx-post="/contact/submit" hx-target="#contact-form" hx-swap="outerHTML" class="site-form">
+        <div class="form-row">
+          <div class="field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="contact-email">Email Address</label>
+            <input id="contact-email" name="email" type="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="contact-topic">I'm reaching out about...</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="topic" value="Grant Writing / Funding Strategy"> Grant Writing / Funding Strategy</label>
+            <label><input type="checkbox" name="topic" value="Bioregional Mapping Workshops"> Bioregional Mapping Workshops</label>
+            <label><input type="checkbox" name="topic" value="Retreats &amp; Event Collaboration"> Retreats &amp; Event Collaboration</label>
+            <label><input type="checkbox" name="topic" value="Adaptogenic Healing Sessions"> Adaptogenic Healing Sessions</label>
+            <label><input type="checkbox" name="topic" value="Podcast/Media Interview"> Podcast/Media Interview</label>
+            <label><input type="checkbox" name="topic" value="Just sharing something cool"> Just sharing something cool</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="contact-message">Tell me more</label>
+          <textarea id="contact-message" name="message" rows="5" required placeholder="Spill the tea..."></textarea>
+        </div>
+        <div class="field">
+          <label for="contact-found">How'd you find 4Life?</label>
+          <select id="contact-found" name="found">
+            <option value="A crow delivered a scroll">A crow delivered a scroll</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Bioregional Networking">Bioregional Networking</option>
+            <option value="My Therapist">My Therapist</option>
+            <option value="Other Magic">Other Magic</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-dark">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{{else if eq .Kind "session-form"}}
+<section class="form-section {{themeClass .Theme}}">
+  <div class="container form-section-inner">
+    <div class="form-heading">
+      {{if .Label}}<div class="eyebrow">{{.Label}}</div>{{end}}
+      <h2>{{mdInline .Headline}}</h2>
+      {{if .Body}}<p>{{mdInline .Body}}</p>{{end}}
+    </div>
+    <div id="session-form">
+      <form hx-post="/session/submit" hx-target="#session-form" hx-swap="outerHTML" class="site-form">
+        <div class="form-row">
+          <div class="field">
+            <label for="session-name">Name</label>
+            <input id="session-name" name="name" type="text" required>
+          </div>
+          <div class="field">
+            <label for="session-email">Email Address</label>
+            <input id="session-email" name="email" type="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="session-calling">What's calling you to this work?</label>
+          <select id="session-calling" name="calling">
+            <option value="Chronic pain">Chronic pain</option>
+            <option value="Trauma support">Trauma support</option>
+            <option value="Spiritual alignment">Spiritual alignment</option>
+            <option value="Herbal guidance">Herbal guidance</option>
+            <option value="Just feel stuck">Just feel stuck</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Session Type</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="session_type" value="Quantum Touch"> Quantum Touch (60 min)</label>
+            <label><input type="checkbox" name="session_type" value="Intraoral + Energy"> Intraoral + Energy (90 min)</label>
+            <label><input type="checkbox" name="session_type" value="Wellness Deep Dive"> Wellness Deep Dive (60 min)</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Availability</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="availability" value="Weekday mornings"> Weekday mornings</label>
+            <label><input type="checkbox" name="availability" value="Evenings"> Evenings</label>
+            <label><input type="checkbox" name="availability" value="Weekend afternoons"> Weekend afternoons</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-dark">{{if .ButtonLabel}}{{.ButtonLabel}}{{else}}Request Session{{end}}</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{{else if eq .Kind "donate"}}
+<section class="donate-section {{themeClass .Theme}}">
+  <div class="container donate-inner">
+    <div class="donate-text">
+      {{if .Label}}<div class="eyebrow">{{.Label}}</div>{{end}}
+      <h2>{{mdInline .Headline}}</h2>
+      {{if .Body}}<div class="donate-body">{{md .Body}}</div>{{end}}
+    </div>
+    <div class="donate-card">
+      <div id="donate-form">
+        <form hx-post="/donate/submit" hx-target="#donate-form" hx-swap="outerHTML" class="site-form">
+          <div class="field">
+            <label>Choose an amount</label>
+            <div class="amount-row">
+              <label class="amount"><input type="radio" name="amount" value="$15"><span>$15</span></label>
+              <label class="amount"><input type="radio" name="amount" value="$50" checked><span>$50</span></label>
+              <label class="amount"><input type="radio" name="amount" value="$100"><span>$100</span></label>
+              <label class="amount"><input type="radio" name="amount" value="custom"><span>$ Custom</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label>Frequency</label>
+            <div class="checkbox-group inline-group">
+              <label><input type="radio" name="frequency" value="One-time" checked> One-time</label>
+              <label><input type="radio" name="frequency" value="Monthly"> Monthly</label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-solid">Give</button>
+          {{if .ButtonURL}}<a class="btn btn-outline-light btn-block" href="{{.ButtonURL}}" target="_blank" rel="noopener">{{.ButtonLabel}}</a>{{end}}
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{end}}
+{{end}}
+{{end}}

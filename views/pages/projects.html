@@ -1,0 +1,22 @@
+{{define "title"}}Projects — {{.Site.Title}}{{end}}
+
+{{define "content"}}
+{{$d := .Extra}}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">PROJECTS IN THE GROUND</p>
+    <h1>Projects &amp; Initiatives</h1>
+    <p>Regeneration isn't a metaphor—it's practice. Here's what's alive and growing right now.</p>
+  </div>
+</section>
+
+<section class="section sec-white">
+  <div class="container">
+    <div class="project-grid">
+      {{range $d.Projects}}
+        {{template "project_card" .}}
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}

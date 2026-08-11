@@ -1,0 +1,37 @@
+{{define "blog.html"}}
+{{template "head" .}}
+{{template "header" .}}
+<main>
+<section class="blog-header">
+  <div class="container">
+    <h1>April's Field Notes</h1>
+    <p>Regenerative strategy, bioregional musings, healing, and the occasional recipe. Sign up for the newsletter so nothing is lost in the weeds.</p>
+  </div>
+</section>
+
+<section class="blog-section sec-white">
+  <div class="container">
+    {{if .Posts}}
+    <div class="blog-grid" id="blog-grid">
+      {{range .Posts}}{{template "post_card" .}}{{end}}
+    </div>
+    {{else}}
+    <p class="empty-state">New posts are sprouting soon. Check back shortly!</p>
+    {{end}}
+
+    {{if .HasMore}}
+    <div class="blog-more">
+      <button class="btn btn-outline-dark" hx-get="/blog/partial?offset={{.NextOff}}" hx-target="#blog-grid" hx-swap="beforeend">Older Posts</button>
+    </div>
+    {{end}}
+  </div>
+</section>
+</main>
+{{template "footer" .}}
+</body>
+</html>
+{{end}}
+
+{{define "partials/blog_grid.html"}}
+{{range .Posts}}{{template "post_card" .}}{{end}}
+{{end}}

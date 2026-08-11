@@ -1,0 +1,33 @@
+{{define "title"}}{{.Extra.Post.Title}} — {{.Site.Title}}{{end}}
+
+{{define "content"}}
+{{$d := .Extra}}
+{{with $d.Post}}
+<article class="post">
+  <header class="post-header">
+    <div class="container">
+      <p class="eyebrow"><a href="/blog">FIELD NOTES</a></p>
+      <h1>{{.Title}}</h1>
+      <p class="post-date">{{if .PublishedAt}}{{dateLong .PublishedAt}}{{else}}{{.Date}}{{end}}</p>
+    </div>
+  </header>
+  {{if .Cover}}<div class="post-cover"><img src="{{.Cover}}" alt="{{.Title}}"></div>{{end}}
+  <div class="container post-body">
+    {{md .Body}}
+  </div>
+</article>
+
+{{if $d.Others}}
+<section class="section sec-dark related">
+  <div class="container">
+    <h2 class="section-title">More Field Notes</h2>
+    <div class="blog-grid">
+      {{range (first 3 $d.Others)}}
+        {{if ne .Slug $.Extra.Post.Slug}}{{template "blog_card" .}}{{end}}
+      {{end}}
+    </div>
+  </div>
+</section>
+{{end}}
+{{end}}
+{{end}}

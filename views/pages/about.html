@@ -1,0 +1,39 @@
+{{define "title"}}About — {{.Site.Title}}{{end}}
+
+{{define "content"}}
+{{$d := .Extra}}
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">{{$d.About.Eyebrow}}</p>
+    <h1>{{mdInline $d.About.Headline}}</h1>
+  </div>
+</section>
+
+<section class="section sec-white">
+  <div class="container about-layout">
+    <div class="about-body">
+      {{md $d.About.Body}}
+    </div>
+    <aside class="about-photo">
+      <img src="{{$d.About.Image}}" alt="{{$d.About.ImageAlt}}" loading="lazy">
+    </aside>
+  </div>
+</section>
+
+<section class="section sec-dark">
+  <div class="container">
+    <h2 class="section-title">What 4Life Weaves Together</h2>
+    <div class="points-grid">
+      {{range $d.About.Points}}
+      <div class="point">
+        <h3>{{.Title}}</h3>
+        <p>{{.Body}}</p>
+      </div>
+      {{end}}
+    </div>
+    <div class="section-cta">
+      <a class="btn btn-solid" href="/contact">Work with April</a>
+    </div>
+  </div>
+</section>
+{{end}}

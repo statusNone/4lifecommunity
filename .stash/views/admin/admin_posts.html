@@ -1,0 +1,39 @@
+{{define "admin_posts.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}}</title>
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-body">
+{{template "admin_sidebar" .}}
+<header class="admin-page-head">
+  <h1>Posts</h1>
+  <a class="btn" href="/admin/posts/new">New Post</a>
+</header>
+
+<section class="admin-panel">
+  <table class="admin-table">
+    <thead><tr><th>Title</th><th>Slug</th><th>Date</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+    {{range .Posts}}
+      <tr>
+        <td><a href="/blog/{{.Slug}}">{{.Title}}</a></td>
+        <td><code>{{.Slug}}</code></td>
+        <td>{{.PublishedAt.Format "Jan 2, 2006"}}</td>
+        <td>{{if .Published}}<span class="pill ok">Live</span>{{else}}<span class="pill">Draft</span>{{end}}</td>
+        <td class="row-actions">
+          <form method="post" action="/admin/posts/toggle" class="inline"><input type="hidden" name="slug" value="{{.Slug}}"><button class="link" title="Toggle publish">{{if .Published}}Unpublish{{else}}Publish{{end}}</button></form>
+          <form method="post" action="/admin/posts/delete" class="inline" onsubmit="return confirm('Delete this post?');"><input type="hidden" name="slug" value="{{.Slug}}"><button class="link danger" title="Delete">Delete</button></form>
+        </td>
+      </tr>
+    {{else}}
+      <tr><td colspan="5" class="empty">No posts yet. Write your first one!</td></tr>
+    {{end}}
+    </tbody>
+  </table>
+</section>
+</main>
+</body>
+</html>{{end}}

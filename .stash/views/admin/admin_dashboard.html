@@ -1,0 +1,51 @@
+{{define "admin_dashboard.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}}</title>
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-body">
+{{template "admin_sidebar" .}}
+<header class="admin-page-head">
+  <h1>Dashboard</h1>
+  <a class="btn" href="/admin/posts/new">New Post</a>
+</header>
+
+<section class="admin-cards">
+  <a class="admin-card" href="/admin/pages">
+    <h3>{{len .Pages}}</h3>
+    <p>Pages</p>
+  </a>
+  <a class="admin-card" href="/admin/posts">
+    <h3>{{len .Posts}}</h3>
+    <p>Posts</p>
+  </a>
+  <a class="admin-card" href="/admin/submissions">
+    <h3>{{len .Submissions}}</h3>
+    <p>Submissions</p>
+  </a>
+</section>
+
+<section class="admin-panel">
+  <h2>Recent submissions</h2>
+  <table class="admin-table">
+    <thead><tr><th>Type</th><th>Name</th><th>Email</th><th>Date</th></tr></thead>
+    <tbody>
+    {{range .Submissions}}
+      <tr>
+        <td><span class="pill">{{.Kind}}</span></td>
+        <td>{{.Name}}</td>
+        <td>{{.Email}}</td>
+        <td>{{.CreatedAt.Format "Jan 2, 2006"}}</td>
+      </tr>
+    {{else}}
+      <tr><td colspan="4" class="empty">No submissions yet.</td></tr>
+    {{end}}
+    </tbody>
+  </table>
+</section>
+</main>
+</body>
+</html>{{end}}

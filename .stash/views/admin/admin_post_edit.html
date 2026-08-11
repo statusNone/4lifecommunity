@@ -1,0 +1,60 @@
+{{define "admin_post_edit.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}}</title>
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-body">
+{{template "admin_sidebar" .}}
+{{$slug := ""}}{{if .Post}}{{$slug = .Post.Slug}}{{end}}
+<header class="admin-page-head">
+  <h1>{{if .Post}}Edit Post{{else}}New Post{{end}}</h1>
+  <a class="btn" href="/admin/posts">Back to Posts</a>
+</header>
+
+<section class="admin-panel">
+  <form method="post" action="/admin/posts/save" class="admin-form">
+    <input type="hidden" name="slug" value="{{$slug}}">
+    <div class="form-row">
+      <div class="field">
+        <label for="p-title">Title</label>
+        <input id="p-title" name="title" type="text" value="{{if .Post}}{{.Post.Title}}{{end}}" required>
+      </div>
+      <div class="field">
+        <label for="p-slug">Slug <small>(optional — auto from title)</small></label>
+        <input id="p-slug" name="slug" type="text" value="{{$slug}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label for="p-excerpt">Excerpt</label>
+        <textarea id="p-excerpt" name="excerpt" rows="3">{{if .Post}}{{.Post.Excerpt}}{{end}}</textarea>
+      </div>
+      <div class="field">
+        <label for="p-cover">Cover image URL</label>
+        <input id="p-cover" name="cover" type="text" value="{{if .Post}}{{.Post.Cover}}{{end}}">
+        <label for="p-external">External URL <small>(e.g. Substack)</small></label>
+        <input id="p-external" name="external_url" type="text" value="{{if .Post}}{{.Post.ExternalURL}}{{end}}">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="field">
+        <label for="p-date">Publish date</label>
+        <input id="p-date" name="published_at" type="date" value="{{if .Post}}{{.Post.PublishedAt.Format "2006-01-02"}}{{end}}">
+      </div>
+      <div class="field">
+        <label class="checkbox"><input type="checkbox" name="published" {{if or (not .Post) .Post.Published}}checked{{end}}> Published</label>
+      </div>
+    </div>
+    <div class="field">
+      <label for="p-body">Body <small>(markdown supported)</small></label>
+      <textarea id="p-body" name="body" rows="16" class="mono">{{if .Post}}{{.Post.Body}}{{end}}</textarea>
+    </div>
+    <button type="submit" class="btn">Save Post</button>
+  </form>
+</section>
+</main>
+</body>
+</html>{{end}}

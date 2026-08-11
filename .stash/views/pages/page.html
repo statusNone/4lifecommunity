@@ -1,0 +1,21 @@
+{{define "page.html"}}
+{{template "head" .}}
+{{template "header" .}}
+<main>
+<section class="page-hero {{if eq .Page.HeroTheme "white"}}page-hero-light{{end}} {{if not .Page.HeroImage}}page-hero-flat{{end}}">
+  <div class="page-hero-media">
+    {{if .Page.HeroImage}}<img src="{{.Page.HeroImage}}" alt="{{.Page.HeroImageAlt}}">{{end}}
+  </div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-inner container">
+    {{if .Page.HeroLabel}}<div class="eyebrow">{{.Page.HeroLabel}}</div>{{end}}
+    <h1>{{mdInline .Page.HeroHeadline}}</h1>
+    {{if .Page.HeroBody}}<div class="page-hero-body">{{mdInline .Page.HeroBody}}</div>{{end}}
+  </div>
+</section>
+{{template "sections" .Page.Sections}}
+</main>
+{{template "footer" .}}
+</body>
+</html>
+{{end}}

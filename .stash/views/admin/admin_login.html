@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}}</title>
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-login-body">
+<main class="admin-login">
+  <h1>4Life <span>Admin</span></h1>
+  {{if .Error}}<p class="flash error">{{.Error}}</p>{{end}}
+  <form method="post" action="/admin/login" class="admin-login-form">
+    <input type="password" name="password" placeholder="Password" autofocus required>
+    <button type="submit">Sign in</button>
+  </form>
+</main>
+</body>
+</html>

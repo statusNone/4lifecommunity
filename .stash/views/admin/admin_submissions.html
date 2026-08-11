@@ -1,0 +1,38 @@
+{{define "admin_submissions.html"}}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Title}}</title>
+<link rel="stylesheet" href="/static/css/admin.css">
+</head>
+<body class="admin-body">
+{{template "admin_sidebar" .}}
+<header class="admin-page-head">
+  <h1>Submissions</h1>
+</header>
+
+<section class="admin-panel">
+  <table class="admin-table">
+    <thead><tr><th>Type</th><th>Name</th><th>Email</th><th>Message / Extras</th><th>Date</th><th></th></tr></thead>
+    <tbody>
+    {{range .Submissions}}
+      <tr>
+        <td><span class="pill">{{.Kind}}</span></td>
+        <td>{{.Name}}</td>
+        <td>{{.Email}}</td>
+        <td class="submission-msg">{{.Message}}{{if .Extras}}<details class="admin-collapse"><summary>extras</summary><pre>{{json .Extras}}</pre></details>{{end}}</td>
+        <td>{{.CreatedAt.Format "Jan 2, 2006 15:04"}}</td>
+        <td class="row-actions">
+          <form method="post" action="/admin/submissions/delete" class="inline" onsubmit="return confirm('Delete this submission?');"><input type="hidden" name="id" value="{{.ID}}"><button class="link danger">Delete</button></form>
+        </td>
+      </tr>
+    {{else}}
+      <tr><td colspan="6" class="empty">No submissions yet.</td></tr>
+    {{end}}
+    </tbody>
+  </table>
+</section>
+</main>
+</body>
+</html>{{end}}
