@@ -1,0 +1,9 @@
+# stashed reference copy of the original site (not part of the app)
+.stash/
+
+# build artifacts
+*.exe
+4life
+
+# local config
+.env

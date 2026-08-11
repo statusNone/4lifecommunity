@@ -1,8 +1,0 @@
-{{define "post_card"}}
-<a class="post-card" href="{{.URL}}">
-  {{if .Cover}}<div class="post-media"><img src="{{.Cover}}" alt="{{.Title}}" loading="lazy"></div>{{end}}
-  <h2>{{.Title}}</h2>
-  <div class="post-meta">{{dateLong .PublishedAt}}</div>
-  <p>{{.Excerpt}}</p>
-</a>
-{{end}}
