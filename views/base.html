@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{block "title" .}}{{.Site.Title}} — {{.Site.Tagline}}{{end}}</title>
   <meta name="description" content="{{.Site.Description}}">
-  <link rel="icon" href="/img/logo-light.png">
+  <link rel="icon" type="image/webp" media="(prefers-color-scheme: light)" href="/img/favicon-light.webp">
+  <link rel="icon" type="image/webp" media="(prefers-color-scheme: dark)" href="/img/favicon-dark.webp">
   <link rel="stylesheet" href="/static/css/site.css">
   {{block "head" .}}{{end}}
 </head>

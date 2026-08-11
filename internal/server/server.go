@@ -130,7 +130,7 @@ func (s *Server) Routes() http.Handler {
 	mux.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	mux.Handle("/img/", http.StripPrefix("/img/", http.FileServer(http.Dir("static/img"))))
 	mux.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "static/img/logo-light.png")
+		http.ServeFile(w, r, "static/img/favicon-light.webp")
 	})
 
 	mux.HandleFunc("/", s.handleHome)

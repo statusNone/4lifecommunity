@@ -39,7 +39,7 @@ var Hero = struct {
 	Eyebrow:      "4LIFE COMMUNITY",
 	Headline:     "Funding & Strategy for Changemakers, 4Life",
 	Body:         "Grant writing, systems design, and trauma-informed guidance for people building a better world. Rooted in justice, land wisdom, and results.",
-	Image:        "/img/april-cutout-home.png",
+	Image:        "/img/april-cutout-home.webp",
 	ImageAlt:     "April Bartlett",
 	Primary:      "Meet April",
 	PrimaryURL:   "/about",
@@ -67,7 +67,7 @@ var About = AboutSection{
 	Eyebrow:  "MEET APRIL",
 	Headline: "April Bartlett invites you into a world where personal healing and planetary restoration go hand in hand.",
 	Body:     "Rooted in a lifetime of resilience, service, and deep listening, 4Life is a living portal for April's integrative work: trauma-informed yoga, holistic health, bioregional organizing, and community regeneration.\n\nApril's journey began in childhood, foraging with her parents and grandparents—learning firsthand that the Earth provides everything we need to thrive. By the age of 17, she was traveling across the U.S., training in herbal nutrition, enzymatic cleaning products, and water filtration. The birth of her third child, who faced life-threatening food and chemical sensitivities, deepened her calling and commitment to healing through ecological wisdom and regenerative practices.\n\nFaced with a choice between isolation or empowerment, April sought out natural healing alternatives, eventually learning from two Hopi Medicine Women. This opened her eyes to how sensitive systems are often excluded from social thinking—and inspired her to create Community 4Life Hub, a space for connection, healing, and low-histamine nourishment. The physical location has since closed. But the community is still connected and moving into the larger field.",
-	Image:    "/img/april-portrait.png",
+	Image:    "/img/april-portrait.webp",
 	ImageAlt: "April Bartlett portrait",
 	Points: []AboutPoint{
 		{
@@ -121,7 +121,7 @@ var Projects = []Project{
 		Title:    "Catatumbo River",
 		Tagline:  "Save a River, Save a Community",
 		Summary:  "Giving the Catatumbo River a second chance. Support the fight for justice for the communities who defend it—documentary, legal action, and long-term protections for the Water Guardians.",
-		Image:    "/img/colombia-misty.png",
+		Image:    "/img/colombia-misty.jpg",
 		ImageAlt: "Misty mountains of Colombia",
 		Status:   "Fundraising",
 	},
